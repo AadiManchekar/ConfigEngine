@@ -19,6 +19,7 @@ The following markdown content rules are enforced in the validators:
 10. **Diagrams**: Use Mermaid syntax for diagrams. Ensure that diagrams are properly formatted and rendered correctly.
 11. **Breadcrumbs**: Include breadcrumbs at the top of the file to indicate the file's location within the project structure. Use proper markdown syntax for links in breadcrumbs.
 12. **Indexing**: Ensure that the content is properly indexed and categorized for easy navigation. Always update the root README.md file to include links to new markdown files and sections as they are created.
+13. **Write Like a Developer, Not a Textbook**: Ensure that the content is written without micro-stylistic habits, Sentence Openers, typographical choices such as `-`, `;`, `—`, curly/smart quotes (“”), or other AI-specific formatting. Use natural language and proper grammar to enhance readability and engagement.
 
 ## Formatting and Structure
 

@@ -26,3 +26,5 @@ replay_pid*
 # log files
 *.log
 
+# Temp folder
+tmp/
