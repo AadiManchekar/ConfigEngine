@@ -16,7 +16,7 @@ tags: ["architecture", "decision", "proto", "domain-model"]
 
 ConfigEngine resolves per client configs and publishes them to a Kafka topic
 for downstream delivery. The published message is the `Configuration` proto
-defined in [config/Configuration.proto](../../config/Configuration.proto).
+defined in [config/v1/configuration.proto](../../config/v1/configuration.proto).
 
 A config is classified by a client class, a config type, and a sub type.
 Keep `config_payload` opaque so CE stays agnostic to concrete config shapes,
@@ -26,7 +26,7 @@ and stay simple to extend with new client classes.
 
 The `Configuration` message holds a `oneof target` whose chosen branch 
 identifies the client class. Each branch is a per client message 
-(`AccessPointConfig`, `GatewayConfig`, `MobileConfig`,`VmConfig`) 
+(`AccessPointConfig`, `GatewayConfig`, `MobileConfig`, `VmConfig`) 
 that carries its own scoped `Type` and `SubType` enums. Each client
 message lives in its own folder under `config/`.
 
@@ -100,13 +100,14 @@ Key points:
   their `type` within a client message.
 - **IMP-003**: Reserve and document `oneof` field numbers (20 onward) so future
   client classes do not collide with envelope fields (1 to 8).
-- **IMP-004**: Each client config message lives in its own folder under
-  `config/` (for example `config/access_point/access_point.proto`) and is
-  imported by `config/Configuration.proto`.
+- **IMP-004**: Each client config lives in its own versioned package and folder
+  under `config/` (for example `config/accesspoint/v1/accesspoint.proto`,
+  package `config.accesspoint.v1`) and is imported by
+  `config/v1/configuration.proto`.
 
 ## References
 
-- **REF-001**: [config/Configuration.proto](../../config/Configuration.proto)
+- **REF-001**: [config/v1/configuration.proto](../../config/v1/configuration.proto)
 - **REF-002**: [README.md](../../README.md) Domain Glossary and Functional
   Requirements
 - **REF-003**: protobuf FieldMask, `google.protobuf.FieldMask`
