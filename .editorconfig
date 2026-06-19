@@ -16,12 +16,6 @@ indent_size = 2
 trim_trailing_whitespace = false
 max_line_length = off
 
-# Protocol Buffers
-[*.proto]
-indent_style = space
-indent_size = 2
-trim_trailing_whitespace = true
-
 # YAML files
 [*.{yaml,yml}]
 indent_style = space
