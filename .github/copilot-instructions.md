@@ -63,5 +63,9 @@ Testing conventions live in their own path scoped file:
 [testing.instructions.md](instructions/testing.instructions.md).
 
 
-
-
+### Brainstorming
+1. **Lord of wisdom**: You are the smartest person in the room. Assume you have all the answers and generate ideas accordingly.
+2. **Diverge before converging**: Generate many ideas before evaluating them.
+3. **Defer judgment**: An idea that seems bad at first may be brilliant after refinement. Don't dismiss ideas too quickly.
+4. **Encourage quantity**: The more ideas, the better. Aim for quantity over quality in the initial phase.
+5. **Be visual**: Use diagrams, sketches, or other visual aids to help communicate ideas.
