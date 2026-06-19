@@ -4,14 +4,13 @@ package config.v1;
 
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
-import "config/access_point/access_point.proto";
-import "config/gateway/gateway.proto";
-import "config/mobile/mobile.proto";
-import "config/vm/vm.proto";
+import "config/accesspoint/v1/accesspoint.proto";
+import "config/gateway/v1/gateway.proto";
+import "config/mobile/v1/mobile.proto";
+import "config/vm/v1/vm.proto";
 
 option java_package = "com.ce.config.v1";
 option java_multiple_files = true;
-
 
 message Configuration {
 
@@ -42,12 +41,12 @@ message Configuration {
   // Use only when (type, sub_type) cannot uniquely identify a config
   optional string additional_identifier = 9;
 
-  // Identifies the client class and scopes the valid (type, sub_type) pair.
+  // Identifies the client class and scopes the valid (type, sub_type) pair
   oneof target {
-    AccessPointConfig access_point = 20;
-    GatewayConfig gateway = 21;
-    MobileConfig mobile = 22;
-    VmConfig vm = 23;
+    config.accesspoint.v1.AccessPointConfig accesspoint = 20;
+    config.gateway.v1.GatewayConfig gateway = 21;
+    config.mobile.v1.MobileConfig mobile = 22;
+    config.vm.v1.VmConfig vm = 23;
   }
 }
 
