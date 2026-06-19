@@ -38,7 +38,7 @@ jobs:
 
       - name: Check Breaking Changes
         if: github.event_name == 'pull_request' # Only run on PR
-        run: buf breaking --against '.git#branch=main'
+        run: buf breaking --against '.git#ref=refs/remotes/origin/main'
 
       # - name: Setup Java
       #   uses: actions/setup-java@v4
