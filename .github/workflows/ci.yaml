@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+# Concurrency group so a new push cancels the in-progress run on the same ref
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Full history is needed for buf breaking changes checks
+
+      - name: Setup Buf
+        uses: bufbuild/buf-setup-action@v1.50.0
+
+      - name: Lint Protobuf Schemas
+        run: buf lint
+
+      - name: Validate Protobuf Schemas
+        run: buf build
+
+      - name: Check Breaking Changes
+        if: github.event_name == 'pull_request' # Only run on PR
+        run: buf breaking --against '.git#ref=refs/remotes/origin/main'
+
+      # - name: Setup Java
+      #   uses: actions/setup-java@v4
+      #   with:
+      #     distribution: temurin
+      #     java-version: '21'
+      #
+      # - name: Compile
+      #   run: mvn clean compile
+      #
+      # - name: Unit Tests
+      #   run: mvn test
+      #
+      # - name: Integration Tests
+      #   run: echo "Integration tests placeholder"
+      #
+      # - name: Package
+      #   run: mvn package -DskipTests
+
+      - name: Summary
+        run: echo "CI completed successfully."
