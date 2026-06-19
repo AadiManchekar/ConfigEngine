@@ -1,8 +1,8 @@
 # ConfigEngine (CE)
 
-ConfigEngine stores, versions, and resolves per device configurations. It
+ConfigEngine stores, versions, and resolves per client configurations. It
 publishes full or partial config updates to a Kafka topic for downstream
-delivery to devices.
+delivery to client.
 
 The product spec lives in the [root README](../README.md): domain glossary,
 functional requirements, and non functional requirements. Read it before
