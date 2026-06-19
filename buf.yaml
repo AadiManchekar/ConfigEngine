@@ -1,0 +1,15 @@
+version: v2
+modules:
+  - path: .
+lint:
+  use:
+    - STANDARD
+  ignore_only:
+    ENUM_VALUE_PREFIX:
+      - config/accesspoint/v1/accesspoint.proto
+      - config/gateway/v1/gateway.proto
+      - config/mobile/v1/mobile.proto
+      - config/vm/v1/vm.proto
+breaking:
+  use:
+    - FILE
