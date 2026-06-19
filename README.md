@@ -20,8 +20,8 @@ Kafka topic for downstream delivery to client.
   at once.
 - **additionalIdentifier**: Optional field used when type and subtype cannot
   uniquely identify a config.
-- **Resolved Config**: The single active config chosen for a client and type
-  after priority resolution.
+- **Resolved Config**: The single active config chosen for a client and type.
+  The most recently created version is active.
 - **Delta**: A proto FieldMask describing only the fields changed since the
   last published version.
 
@@ -32,9 +32,8 @@ Kafka topic for downstream delivery to client.
 2. **Config Types**: A config has a type and an optional subtype. Use
    `additionalIdentifier` only when type and subtype are insufficient.
 3. **Client Scoping**: Every config is scoped to a specific client identifier.
-4. **Priority Resolution**: Among configs of the same type for a client, the
-   highest priority one is active. On a tie, the most recently created version
-   wins.
+4. **Resolution**: Among versions of the same type for a client, the most
+   recently created version is active.
 5. **Full Publish**: Publish the complete resolved config for a client and type
    to the Kafka delivery topic.
 6. **Delta Publish**: Publish only changed fields between the previous published
