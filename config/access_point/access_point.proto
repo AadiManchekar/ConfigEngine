@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package config.v1;
+
+option java_package = "com.ce.config.v1.access_point";
+option java_multiple_files = true;
+
+message AccessPointConfig {
+  Type type = 1;
+  SubType sub_type = 2;
+
+  enum Type {
+    TYPE_UNSPECIFIED = 0;
+    RADIO = 1;
+    WLAN = 2;
+    UPLINK = 3;
+    QOS = 4;
+  }
+
+  enum SubType {
+    SUB_TYPE_UNSPECIFIED = 0;
+    BAND_24GHZ = 1;        // RADIO
+    BAND_5GHZ = 2;         // RADIO
+    BAND_6GHZ = 3;         // RADIO
+    SSID = 4;              // WLAN
+    SECURITY = 5;          // WLAN
+    MESH = 6;              // UPLINK
+    ETHERNET_BACKHAUL = 7; // UPLINK
+    TRAFFIC_SHAPING = 8;   // QOS
+  }
+}

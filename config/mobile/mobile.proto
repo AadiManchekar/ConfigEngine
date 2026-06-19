@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package config.v1;
+
+option java_package = "com.ce.config.v1.mobile";
+option java_multiple_files = true;
+
+message MobileConfig {
+  Type type = 1;
+  SubType sub_type = 2;
+
+  enum Type {
+    TYPE_UNSPECIFIED = 0;
+    FEATURE_FLAGS = 1;
+    UI = 2;
+    TELEMETRY = 3;
+  }
+
+  enum SubType {
+    SUB_TYPE_UNSPECIFIED = 0;
+    ONBOARDING_FLAGS = 1; // FEATURE_FLAGS, e.g. skip_tutorial
+    CHECKOUT_FLAGS = 2;   // FEATURE_FLAGS, e.g. one_tap_pay
+    EXPERIMENT_FLAGS = 3; // FEATURE_FLAGS, e.g. beta_chat
+    CRASH_REPORTING = 4;  // TELEMETRY
+    ANALYTICS = 5;        // TELEMETRY
+  }
+}

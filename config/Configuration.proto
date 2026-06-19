@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package config.v1;
+
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+import "config/access_point/access_point.proto";
+import "config/gateway/gateway.proto";
+import "config/mobile/mobile.proto";
+import "config/vm/vm.proto";
+
+option java_package = "com.ce.config.v1";
+option java_multiple_files = true;
+
+
+message Configuration {
+
+  // Unique identifier for this config
+  string id = 1;
+
+  // Unique identifier for the client receiving this config
+  string client_id = 2;
+
+  // Configuration version number
+  uint64 version = 3;
+
+  // Full or partial update
+  UpdateType update_type = 4;
+
+  // Set only when update_type is UPDATE_TYPE_PARTIAL
+  optional google.protobuf.FieldMask update_mask = 5;
+
+  // Opaque serialized config. Decoded using (branch, type, sub_type).
+  bytes config_payload = 6;
+
+  // Config creation timestamp
+  google.protobuf.Timestamp created_at = 7;
+
+  // Config publication timestamp
+  google.protobuf.Timestamp published_at = 8;
+
+  // Use only when (type, sub_type) cannot uniquely identify a config
+  optional string additional_identifier = 9;
+
+  // Identifies the client class and scopes the valid (type, sub_type) pair.
+  oneof target {
+    AccessPointConfig access_point = 20;
+    GatewayConfig gateway = 21;
+    MobileConfig mobile = 22;
+    VmConfig vm = 23;
+  }
+}
+
+enum UpdateType {
+  UPDATE_TYPE_UNSPECIFIED = 0;
+  UPDATE_TYPE_FULL = 1;
+  UPDATE_TYPE_PARTIAL = 2;
+}

@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package config.v1;
+
+option java_package = "com.ce.config.v1.gateway";
+option java_multiple_files = true;
+
+message GatewayConfig {
+  Type type = 1;
+  SubType sub_type = 2;
+
+  enum Type {
+    TYPE_UNSPECIFIED = 0;
+    ROUTING = 1;
+    FIREWALL = 2;
+    TUNNEL = 3;
+    DHCP_DNS = 4;
+  }
+
+  enum SubType {
+    SUB_TYPE_UNSPECIFIED = 0;
+    STATIC_ROUTE = 1;  // ROUTING
+    BGP = 2;           // ROUTING
+    NAT = 3;           // ROUTING
+    ACL = 4;           // FIREWALL
+    GEO_BLOCK = 5;     // FIREWALL
+    IPSEC = 6;         // TUNNEL
+    WIREGUARD = 7;     // TUNNEL
+    DHCP_POOL = 8;     // DHCP_DNS
+    DNS_FORWARDER = 9; // DHCP_DNS
+  }
+}

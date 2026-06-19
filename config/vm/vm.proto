@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package config.v1;
+
+option java_package = "com.ce.config.v1.vm";
+option java_multiple_files = true;
+
+message VmConfig {
+  Type type = 1;
+  SubType sub_type = 2;
+
+  enum Type {
+    TYPE_UNSPECIFIED = 0;
+    RUNTIME = 1;
+    WORKLOAD = 2;
+    SCALING = 3;
+    OBSERVABILITY = 4;
+  }
+
+  enum SubType {
+    SUB_TYPE_UNSPECIFIED = 0;
+    ENV_VARS = 1;        // RUNTIME
+    RESOURCE_LIMITS = 2; // RUNTIME
+    CONTAINER_IMAGE = 3; // WORKLOAD, which Docker image to run
+    COMPOSE_SPEC = 4;    // WORKLOAD, multi container compose definition
+    REPLICAS = 5;        // SCALING
+    AUTOSCALE = 6;       // SCALING
+    LOG_LEVEL = 7;       // OBSERVABILITY
+    METRICS = 8;         // OBSERVABILITY
+  }
+}
